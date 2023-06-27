@@ -329,13 +329,16 @@ class CalendarDatePicker2WithActionButtonsConfig
   final TextStyle? cancelButtonTextStyle;
 
   /// Custom cancel button
-  final Widget? cancelButton;
+  final Widget Function(BuildContext context)? cancelButton;
 
   /// Text style for ok button
   final TextStyle? okButtonTextStyle;
 
   /// Custom ok button
-  final Widget? okButton;
+  final Widget Function(
+    BuildContext context,
+    List<DateTime?> Function() values,
+  )? okButton;
 
   /// Is the calendar opened from dialog
   final bool? openedFromDialog;
@@ -384,9 +387,12 @@ class CalendarDatePicker2WithActionButtonsConfig
     CalendarModePickerTextHandler? modePickerTextHandler,
     double? gapBetweenCalendarAndButtons,
     TextStyle? cancelButtonTextStyle,
-    Widget? cancelButton,
+    Widget Function(BuildContext context)? cancelButton,
     TextStyle? okButtonTextStyle,
-    Widget? okButton,
+    Widget Function(
+      BuildContext context,
+      List<DateTime?> Function() values,
+    )? okButton,
     bool? openedFromDialog,
     bool? closeDialogOnCancelTapped,
     bool? closeDialogOnOkTapped,

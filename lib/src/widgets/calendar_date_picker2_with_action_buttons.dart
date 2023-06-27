@@ -88,12 +88,12 @@ class _CalendarDatePicker2WithActionButtonsState
         ),
         SizedBox(height: widget.config.gapBetweenCalendarAndButtons ?? 10),
         Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildCancelButton(Theme.of(context).colorScheme, localizations),
+            _buildOkButton(Theme.of(context).colorScheme, localizations),
             if ((widget.config.gapBetweenCalendarAndButtons ?? 0) > 0)
               SizedBox(width: widget.config.gapBetweenCalendarAndButtons),
-            _buildOkButton(Theme.of(context).colorScheme, localizations),
+            _buildCancelButton(Theme.of(context).colorScheme, localizations),
           ],
         ),
       ],
@@ -115,7 +115,7 @@ class _CalendarDatePicker2WithActionButtonsState
       child: Container(
         padding: widget.config.buttonPadding ??
             const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: widget.config.cancelButton ??
+        child: widget.config.cancelButton?.call(context) ??
             Text(
               localizations.cancelButtonLabel.toUpperCase(),
               style: widget.config.cancelButtonTextStyle ??
@@ -146,7 +146,7 @@ class _CalendarDatePicker2WithActionButtonsState
       child: Container(
         padding: widget.config.buttonPadding ??
             const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: widget.config.okButton ??
+        child: widget.config.okButton?.call(context, () => _editCache) ??
             Text(
               localizations.okButtonLabel.toUpperCase(),
               style: widget.config.okButtonTextStyle ??
